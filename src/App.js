@@ -1,11 +1,7 @@
-import './App.css';
+import Body from './components/Body';
 
 function App() {
-  return (
-    <div className = "text-yellow-900 font-sans hover:font-serif font-semibold">
-      Hello Netflix GPT
-    </div>
-  );
+  return <Body />
 }
 
 export default App;
