@@ -17,12 +17,27 @@ const Login = () => {
             </div>
 
             <div>
-                <form className='w-3/12 absolute p-12 bg-blue-900 my-36 mx-auto right-0 left-0'>
-                    <input type='text' placeholder='Email or mobile number' className='p-2 m-2' />
-                    <input type='password' placeholder='password' className='p-2 m-2' />
-                    <button className='p-4'>
-                        SiginIn
+                <form className='w-3/12 absolute p-12 bg-opacity-90 bg-neutral-900 my-36 mx-auto right-0 left-0 text-white'>
+
+                    <h1 className='font-bold text-3xl py-4'>Sign In</h1>
+
+                    <input
+                        type='text'
+                        placeholder='Email or mobile number'
+                        className='p-4 my-4 w-full bg-opacity-90 bg-neutral-900 border-solid rounded-md border-red-900'
+                    />
+                    <input
+                        type='password'
+                        placeholder='Password'
+                        className='p-4 my-4 w-full opacity-90 bg-neutral-900 border-solid rounded-md border-red-900'
+                    />
+
+                    <button className='p-4 my-4 bg-red-700 w-full rounded-md'>
+                        Sign In
                     </button>
+                    <p className='py-4'>
+                        New to Netflix? Sign up now.
+                    </p>
                 </form>
             </div>
 
