@@ -1,12 +1,33 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import Header from './Header'
+import { isValidEmail, isValidMobileNumber } from '../utils/validate';
 
 const Login = () => {
 
     const [isSignInForm, setIsSignInForm] = useState(true);
 
+    const [errorMessage, setErrorMessage] = useState(null);
+
+    const email = useRef();
+    const mobile = useRef();
+    const password = useRef();
+
     const toggleSignInForm = () => {
         setIsSignInForm(!isSignInForm)
+    }
+
+    const handleButtonClick = () => {
+
+        if (isSignInForm) {
+            const message = isValidEmail(email.current.value)
+            setErrorMessage(message)
+        }
+
+        if (!isSignInForm) {
+            const message = isValidMobileNumber(mobile.current.value);
+            setErrorMessage(message)
+        }
+
     }
 
     return (
@@ -24,36 +45,38 @@ const Login = () => {
             </div>
 
             <div>
-                <form className='w-3/12 absolute p-12 bg-opacity-90 bg-neutral-900 my-36 mx-auto right-0 left-0 text-white'>
+                <form
+                    onSubmit={(e) => e.preventDefault()}
+                    className='w-3/12 absolute p-12 bg-opacity-90 bg-neutral-900 my-36 mx-auto right-0 left-0 text-white'>
 
                     <h1 className='font-bold text-3xl py-4'>
                         {isSignInForm ? "Sign In" : "Sign Up"}
                     </h1>
 
-                    {isSignInForm && (<input
-                        type='text'
-                        placeholder='Email or mobile number'
-                        className='p-4 my-4 w-full bg-opacity-90 bg-neutral-900 border-solid rounded-md border-red-900'
-                    />)}
-
-                    {!isSignInForm && (<input
+                    <input
+                        ref={email}
                         type='text'
                         placeholder='Email'
                         className='p-4 my-4 w-full bg-opacity-90 bg-neutral-900 border-solid rounded-md border-red-900'
-                    />)}
+                    />
 
                     {!isSignInForm && (<input
+                        ref={mobile}
                         type='text'
                         placeholder='Mobile number'
                         className='p-4 my-4 w-full bg-opacity-90 bg-neutral-900 border-solid rounded-md border-red-900'
                     />)}
-                    
+
                     <input
+                        ref={password}
                         type='password'
                         placeholder='Password'
                         className='p-4 my-4 w-full opacity-90 bg-neutral-900 border-solid rounded-md border-red-900'
                     />
-                    <button className='p-4 my-4 bg-red-700 w-full rounded-md'>
+                    <p className='text-red-500 font-bold text-md'>
+                        {errorMessage}
+                    </p>
+                    <button className='p-4 my-4 bg-red-700 w-full rounded-md' onClick={handleButtonClick}>
                         {isSignInForm ? "Sign In" : "Sign Up"}
                     </button>
 
